@@ -9,7 +9,7 @@ export default function GoogleButton() {
 
   const handleLogin = async (credential: string) => {
     try {
-      const res = await api.post("/api/auth/google", { credential });
+      const res = await api.post("/auth/google", { credential });
 
       const { user, accessToken } = res.data;
       useAuthStore.getState().setAuth(user, accessToken);

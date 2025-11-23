@@ -1,4 +1,4 @@
-import Script from "next/script";
+import AuthInitializer from "@/components/auth/AuthInitializer";
 import "./globals.css";
 
 export const metadata = {
@@ -18,6 +18,7 @@ export default function RootLayout({
           async
           defer
         ></script>
+        <AuthInitializer />
         {children}
       </body>
     </html>

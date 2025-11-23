@@ -1,24 +1,26 @@
 import { create } from "zustand";
-import { setAccessToken } from "@/lib/axios";
 
 interface AuthState {
   user: unknown | null;
-  token: string | null;
-  setAuth: (user: unknown, token: string) => void;
+  isLoading: boolean;
+  setAuth: (user: unknown | null) => void;
   logout: () => void;
+  setLoading: (loading: boolean) => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,
-  token: null,
+  isLoading: true,
 
-  setAuth: (user, token) => {
-    setAccessToken(token);
-    set({ user, token });
+  setAuth: (user) => {
+    set({ user, isLoading: false });
   },
 
   logout: () => {
-    setAccessToken(null);
-    set({ user: null, token: null });
+    set({ user: null, isLoading: false });
+  },
+
+  setLoading: (loading) => {
+    set({ isLoading: loading });
   },
 }));
